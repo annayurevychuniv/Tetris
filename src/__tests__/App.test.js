@@ -17,7 +17,6 @@ describe('createStage', () => {
     });
 });
 
-/*
 
 describe('checkCollision', () => {
     let stage;
@@ -44,5 +43,3 @@ describe('checkCollision', () => {
         expect(collision).toBe(true);
     });
 });
-
-*/
