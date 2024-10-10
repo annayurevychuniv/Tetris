@@ -1,0 +1,31 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v4 
+    # This step uses the actions/checkout action to check out your repository so that the workflow can access the source code files. It essentially clones the code from your GitHub repository to the runner (the machine that will execute the workflow). Without this, the subsequent steps would not be able to access the code.
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm ci
+    # npm ci: This command is faster than npm install because it installs dependencies exactly as specified in your package-lock.json file (it ensures consistent builds). It also removes the node_modules directory before installing to ensure a clean install.
+    - run: npm run build --if-present
+    - run: npm test
+      
