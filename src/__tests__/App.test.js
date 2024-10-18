@@ -4,7 +4,7 @@ import { TETROMINOS } from '../tetrominos'
 describe('createStage', () => {
     test('creates a stage with the correct dimensions filled with [0, "clear"]', () => {
         const GAME_HEIGHT = 20; 
-        const GAME_WIDTH = 14;  
+        const GAME_WIDTH = 12;  
         const expectedStage = Array.from(Array(GAME_HEIGHT), () =>
             new Array(GAME_WIDTH).fill([0, 'clear'])
         );
